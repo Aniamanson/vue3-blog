@@ -1,6 +1,7 @@
 # Vue 3 + TypeScript + Vite Blog
 
 General Skills:
+- Composition api, script setup
 - Design Patterns, modular code
 - TypeScript for type safety
 - Pinia state manager
