@@ -9,7 +9,7 @@ General Skills:
 To run project clone this repo to your computer and use following commands:
 ```
 npm i
-npm run dev
-// & in other terminal to run server: 
 npm run server
+// & in other terminal:
+npm run dev
 ```
