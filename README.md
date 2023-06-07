@@ -3,6 +3,7 @@
 General Skills:
 - Design Patterns, modular code
 - TypeScript for type safety
+- Pinia state manager
 - real authentication and authorization using jsonwebtoken (JWT)
 - Basic server with Node.js + Express
 
