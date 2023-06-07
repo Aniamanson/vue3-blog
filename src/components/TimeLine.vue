@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import TimeLineItem from './TimelineItem.vue'
+import TimeLineItem from './TimeLineItem.vue'
 import { usePosts } from '../store/posts'
 import { periods } from '../constants'
+import { computed } from 'vue'
+import { Post } from '../data/posts'
 
 const postsStore = usePosts()
 await postsStore.fetchPosts()
+
+const posts = computed(() => {
+  if (postsStore.filteredPosts) {
+    return postsStore.filteredPosts as Post[]
+  }
+})
 
 </script>
 
@@ -20,9 +28,11 @@ await postsStore.fetchPosts()
         {{ period }}
       </a>
     </p>
-    <transition-group name="list" tag="div" class="posts__list">
-      <TimeLineItem v-for="post in postsStore.filteredPosts" :key="post.id" :post="post" />
-    </transition-group>
+    <div v-if="posts">
+      <transition-group name="list" tag="div" class="posts__list">
+        <TimeLineItem v-for="post in posts" :key="post?.id" :post="post" />
+      </transition-group>
+    </div>
   </nav>
 </template>
 

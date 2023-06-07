@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import moment from 'moment'
-import { TimeLinePost } from '../data/posts'
+import { TimeLinePost, Post } from '../data/posts'
 import { useUsers } from '../store/users'
 import { ref } from 'vue'
 
 const usersStore = useUsers()
 const author = ref('')
 const props = defineProps<{
-  post: TimeLinePost
+  post: TimeLinePost | Post
 }>()
 
 async function getAuthor () {

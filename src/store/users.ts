@@ -28,7 +28,7 @@ export const useUsers = defineStore('users', {
         await this.authentication()
         return true
       }
-      catch (e) {
+      catch (e: any) {
         if ([401, 404].includes(e.response.status)) {
           useErrors().setError({
             currentError: 'Username or password was incorrect',
@@ -52,7 +52,7 @@ export const useUsers = defineStore('users', {
       await axios.post('/api/logout')
       await this.authentication()
     },
-    async getUser (id) {
+    async getUser (id: string) {
       try {
         const response = await axios.get(`/api/get-user/${id}`)
         return response.data.username as string

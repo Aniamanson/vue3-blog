@@ -13,7 +13,10 @@ export function useModal() {
     component,
     showModal: (type: string) => {
       show.value = true
-      document.querySelector('html').classList.add('fixed')
+      const html = document.querySelector('html')
+      if (html) {
+        html.classList.add('fixed')
+      }
       switch (type) {
         case 'signIn': return component.value = SignInForm
         case 'signUp': return component.value = SignUpForm
@@ -23,7 +26,10 @@ export function useModal() {
     },
     hideModal: () => {
       show.value = false
-      document.querySelector('html').classList.remove('fixed')
+      const html = document.querySelector('html')
+      if (html) {
+        html.classList.remove('fixed')
+      }
     },
   }
 }

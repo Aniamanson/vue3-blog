@@ -22,7 +22,7 @@ const img = ref(props.post.img)
 
 const usersStore = useUsers()
 
-function parseHtml(markdown) {
+function parseHtml(markdown: string) {
   marked.parse(markdown,
     {
       gfm: true,
@@ -60,11 +60,14 @@ function editContent() {
 async function savePost () {
   const newPost: Post = {
     ...props.post,
-    authorID: usersStore.currentUserId,
+    authorID: '',
     title: title.value,
     markdown: content.value,
     html: html.value,
     img: img.value
+  }
+  if (usersStore.currentUserId) {
+    newPost.authorID = usersStore.currentUserId
   }
   emit('submit', newPost)
 }

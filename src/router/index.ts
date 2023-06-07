@@ -38,8 +38,8 @@ export const router = createRouter({
       beforeEnter: (to, from) => {
         const usersStore = useUsers()
         const postsStore = usePosts()
-        const author = postsStore.all.get(to.params.id)
-        if (!postsStore.ids.includes(to.params.id) || usersStore.currentUserId !== author.authorID) {
+        const author = postsStore.all.get(to.params.id as string)
+        if (!postsStore.ids.includes(to.params.id as string) || usersStore.currentUserId !== author?.authorID) {
           return {
             path: '/posts'
           }
@@ -51,7 +51,7 @@ export const router = createRouter({
       component: ShowPost,
       beforeEnter: (to, from) => {
         const postsStore = usePosts()
-        if (!postsStore.ids.includes(to.params.id)) {
+        if (!postsStore.ids.includes(to.params.id as string)) {
           return {
             path: '/404'
           }

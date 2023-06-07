@@ -43,7 +43,7 @@ export const usePosts = defineStore('posts', {
     async createPost (post: Post) {
       const data = {
         ...post,
-        created: post.created.toISOString()
+        created: post.created
       }
       return await axios.post('/api/posts', data)
     },
@@ -59,18 +59,20 @@ export const usePosts = defineStore('posts', {
     }
   },
   getters: {
-    filteredPosts: (state): Post[] => {
-      return state.ids
-        .map(id => state.all.get(id))
-        .filter(post => {
-        if (state.selectedPeriod === 'Today') {
-          return moment(post.created) >= moment().subtract(1, 'days')
-        } else if (state.selectedPeriod === 'This week') {
-          return moment(post.created) >= moment().subtract(1, 'weeks')
-        } else {
-          return post
-        }
-      })
+    filteredPosts: (state) => {
+      if (state.ids) {
+        const posts = state.ids.map(id => state.all.get(id as string))
+          .filter(post => {
+            if (state.selectedPeriod === 'Today') {
+              return moment(post?.created) >= moment().subtract(1, 'days')
+            } else if (state?.selectedPeriod === 'This week') {
+              return moment(post?.created) >= moment().subtract(1, 'weeks')
+            } else {
+              return post
+            }
+          })
+        return posts
+      }
     }
   }
 })

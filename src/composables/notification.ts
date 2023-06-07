@@ -9,6 +9,6 @@ export function useNotification() {
     type,
     showNotification: () => show.value = true,
     hideNotification: () => show.value = false,
-    changeType: (notifyType) => type.value = notifyType
+    changeType: (notifyType: string) => type.value = notifyType
   }
 }

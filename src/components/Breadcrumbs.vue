@@ -6,8 +6,13 @@ const postsStore = usePosts()
 const route = useRoute()
 const routePath = route.path.split('/').slice(1)
 
-function  itemTitle (id) {
-  return postsStore.all.get(id).title
+function  itemTitle (id: string) {
+  const post = postsStore.all.get(id)
+  if (post) {
+    return post.title
+  } else {
+    return ''
+  }
 }
 </script>
 

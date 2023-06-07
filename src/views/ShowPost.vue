@@ -19,6 +19,7 @@ const post = postsStore.all.get(id)
 
 if (!post) {
   router.push('/404')
+  throw Error('the post was not found')
 }
 
 const canEdit = computed(() => {
@@ -29,7 +30,7 @@ const canEdit = computed(() => {
 });
 
 async function getAuthor () {
-  const username = await usersStore.getUser(post?.authorID)
+  const username = await usersStore.getUser(post?.authorID as string)
   if (username) {
     author.value = username as string
   }
@@ -38,7 +39,7 @@ async function getAuthor () {
 getAuthor()
 
 function deletePost () {
-  postsStore.selectedPost = post.id
+  postsStore.selectedPost = post?.id as string
   modal.showModal('confirmDeletePost')
 }
 </script>
@@ -68,9 +69,9 @@ function deletePost () {
       </aside>
     </div>
     <div class="column is-four-fifths">
-      <h1>{{ post.title }}</h1>
-      <img :src="post.img" :alt="post.title" class="img-responsive blog-img">
-      <div class="editor-text" v-html="post.html" />
+      <h1>{{ post?.title }}</h1>
+      <img :src="post?.img" :alt="post?.title" class="img-responsive blog-img">
+      <div class="editor-text" v-html="post?.html" />
     </div>
   </div>
 </template>
