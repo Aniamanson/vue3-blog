@@ -1,0 +1,81 @@
+@import "bulma/css/bulma.css";
+@import "highlight.js/styles/atom-one-dark.css";
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: revert;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style: revert !important;
+  list-style-position: inside !important;
+}
+
+pre {
+  margin: 10px 0 !important;
+}
+
+p {
+  margin: 10px 0 !important;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.container {
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+html.fixed {
+  overflow: hidden;
+}
+
+.editor {
+  &-col {
+    border: 1px solid #dbdbdb;
+    min-height: 50vh;
+    padding: 1rem 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 2rem;
+  }
+  &-text {
+    background: aliceblue;
+    padding: 1rem 1rem;
+    border-radius: 0.4rem;
+    min-height: 50vh;
+  }
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  &__block {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.button__to-top {
+  display: block;
+  position: fixed;
+  bottom: 2rem;
+  right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  outline: none;
+  border: none;
+  background: transparent;
+  z-index: 9;
+  cursor: pointer;
+}
